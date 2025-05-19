@@ -1,6 +1,7 @@
+const catchAsync = require("../utils/catchAsync");
 const Blog = require("./../models/blogModel");
 
-exports.getAllBlogs = async (req, res, next) => {
+exports.getAllBlogs = catchAsync(async (req, res, next) => {
   try {
     const blogs = await Blog.find().populate("author", "name");
     res.status(200).json({
@@ -16,9 +17,9 @@ exports.getAllBlogs = async (req, res, next) => {
       message: err.message,
     });
   }
-};
+});
 
-exports.createBlog = async (req, res, next) => {
+exports.createBlog = catchAsync(async (req, res, next) => {
   try {
     const blog = await Blog.create(req.body);
 
@@ -34,9 +35,9 @@ exports.createBlog = async (req, res, next) => {
       message: err.message,
     });
   }
-};
+});
 
-exports.deleteBlog = async (req, res, next) => {
+exports.deleteBlog = catchAsync(async (req, res, next) => {
   const blog = await Blog.findByIdAndDelete(req.params.id);
 
   if (!blog)
@@ -46,4 +47,4 @@ exports.deleteBlog = async (req, res, next) => {
     status: "success",
     message: "Blog deleted successfully",
   });
-};
+});

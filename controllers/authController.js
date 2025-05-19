@@ -1,3 +1,4 @@
+const catchAsync = require("../utils/catchAsync");
 const User = require("./../models/userModel");
 const jwt = require("jsonwebtoken");
 
@@ -7,7 +8,7 @@ const signToken = (id) => {
   });
 };
 
-exports.signUp = async (req, res, next) => {
+exports.signUp = catchAsync(async (req, res, next) => {
   try {
     const newUser = await User.create({
       name: req.body.name,
@@ -34,4 +35,12 @@ exports.signUp = async (req, res, next) => {
       message: err.message,
     });
   }
-};
+});
+
+exports.login = async (req,res,next)=>{
+  const {email, password} = req.body
+
+  //if user and password exists
+
+  if(!user||!password) return 
+}
