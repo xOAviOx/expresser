@@ -6,4 +6,5 @@ router
   .get(blogController.getAllBlogs)
   .post(blogController.createBlog);
 
+router.route("/deleteBlog/:id").delete(blogController.deleteBlog);
 module.exports = router;

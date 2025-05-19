@@ -35,3 +35,15 @@ exports.createBlog = async (req, res, next) => {
     });
   }
 };
+
+exports.deleteBlog = async (req, res, next) => {
+  const blog = await Blog.findByIdAndDelete(req.params.id);
+
+  if (!blog)
+    return res.status(404).json({ status: "fail", message: "Blog Not Found" });
+
+  res.status(200).json({
+    status: "success",
+    message: "Blog deleted successfully",
+  });
+};
