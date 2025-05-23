@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Blog Platform
+    link(rel="stylesheet", href="/css/styles.css")
+  body
+    nav
+      .logo EXpresser
+      ul
+        li: a(href="/signup") Sign Up
+        li: a(href="/login") Login
+
+    .container
+      each blog in blogs
+        .blog
+          if blog.imageCover
+            img.cover(src=blog.imageCover, alt="Cover image")
+          h2= blog.title
+          p.excerpt= blog.excerpt
+          p= blog.content
+          p.tags Tags: #{blog.tags.join(', ')}

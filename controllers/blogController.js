@@ -34,3 +34,10 @@ exports.deleteBlog = catchAsync(async (req, res, next) => {
     message: "Blog deleted successfully",
   });
 });
+exports.deleteAllBlog = catchAsync(async (req, res, next) => {
+  await Blog.deleteMany();
+  res.status(200).json({
+    status: "success",
+    message: "All blogs have been deleted.",
+  });
+});
