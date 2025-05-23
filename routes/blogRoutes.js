@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const blogController = require("./../controllers/blogController");
+const authController = require("./../controllers/authController");
+
 router
   .route("/")
   .get(blogController.getAllBlogs)
-  .post(blogController.createBlog);
+  .post(authController.protect, blogController.createBlog);
 
 router.route("/deleteBlog/:id").delete(blogController.deleteBlog);
 module.exports = router;

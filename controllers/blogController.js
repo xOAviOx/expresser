@@ -2,39 +2,25 @@ const catchAsync = require("../utils/catchAsync");
 const Blog = require("./../models/blogModel");
 
 exports.getAllBlogs = catchAsync(async (req, res, next) => {
-  try {
-    const blogs = await Blog.find().populate("author", "name");
-    res.status(200).json({
-      status: "success",
-      results: blogs.length,
-      data: {
-        data: blogs,
-      },
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
+  const blogs = await Blog.find().populate("author", "name");
+  res.status(200).json({
+    status: "success",
+    results: blogs.length,
+    data: {
+      data: blogs,
+    },
+  });
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
-  try {
-    const blog = await Blog.create(req.body);
+  const blog = await Blog.create(req.body);
 
-    res.status(201).json({
-      status: "success",
-      data: {
-        data: blog,
-      },
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
+  res.status(201).json({
+    status: "success",
+    data: {
+      data: blog,
+    },
+  });
 });
 
 exports.deleteBlog = catchAsync(async (req, res, next) => {
