@@ -412,7 +412,7 @@ html {
 /* Logout Button */
 .nav__el--logout {
   background-color: transparent;
-  color: #e0f0ff;
+  color: #1c3a63; /* darker text */
   border: 1px solid #3f8efc;
   padding: 0.5rem 1.4rem;
   font-size: 1.3rem;
@@ -422,7 +422,7 @@ html {
 
 .nav__el--logout:hover {
   background-color: #2d76e5;
-  color: #fff;
+  color: #111; /* even darker text on hover */
   border-color: #2d76e5;
 }
 

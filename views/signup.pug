@@ -7,11 +7,11 @@ html(lang="en")
     link(rel="stylesheet", href="/css/signup.css")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
     link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
-  body
+  body  
     .signup-container
       .signup-box
-        h1 Sign Up
-        form(action="/signup", method="POST", class="signup-form")
+        h1 Sign Up   
+        form.signup-form(onsubmit="return false")
           label(for="name") Name
           input(type="text", name="name", id="name", required)
 
@@ -26,6 +26,7 @@ html(lang="en")
 
           button(type="submit") Create Account
 
-        p.login-link
+        p.login-link         
           | Already have an account?
           a(href="/login") Login here →
+    script(src='/js/bundle.js')
