@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const blogRouter = require("./routes/blogRoutes");
 const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -10,7 +11,9 @@ const app = express();
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+// Middleware
 app.use(express.json());
+app.use(cookieParser()); // Add this line to parse cookies
 
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));

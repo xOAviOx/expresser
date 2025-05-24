@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Sign Up | EXpresser
+    link(rel="stylesheet", href="/css/signup.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+  body
+    .signup-container
+      .signup-box
+        h1 Sign Up
+        form(action="/signup", method="POST", class="signup-form")
+          label(for="name") Name
+          input(type="text", name="name", id="name", required)
+
+          label(for="email") Email
+          input(type="email", name="email", id="email", required)
+
+          label(for="password") Password
+          input(type="password", name="password", id="password", required)
+
+          label(for="confirmPassword") Confirm Password
+          input(type="password", name="confirmPassword", id="confirmPassword", required)
+
+          button(type="submit") Create Account
+
+        p.login-link
+          | Already have an account?
+          a(href="/login") Login here →

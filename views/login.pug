@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Login | EXpresser
+    link(rel="stylesheet", href="/css/login.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+  body
+    .login-container
+      .login-box
+        h1 Welcome Back
+        form.login-form
+          label(for="email") Email
+          input(type="email", name="email", id="email", required)
+
+          label(for="password") Password
+          input(type="password", name="password", id="password", required)
+
+          button(type="submit") Log In
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js")
+    script(src="/js/bundle.js")

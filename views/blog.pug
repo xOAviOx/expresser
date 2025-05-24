@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= blog.title + " | EXpresser"
+    link(rel="stylesheet", href="/css/styles.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+  body
+    // NAVBAR
+    header.header
+      nav.navbar
+        .nav-left
+          a.logo(href="/")
+            img.favicon(src="/img/favicon.png", alt="Logo")
+            span EXpresser
+        .nav-right
+          ul.nav-links
+
+
+            if user
+              li.nav-user
+                a.nav__el(href='/me')
+                  img.nav__user-img(src=`/img/${user.photo}`, alt=`Photo of ${user.name}`)
+                  span= user.name.split(' ')[0]
+                a.nav__el.nav__el--logout Logout
+            else
+              li: a.nav__el(href="/login") Login
+              li: a.nav__el.nav__el--cta(href="/signup") Sign Up
+
+    // CONTENT
+    main.blog-container
+      if blog.imageCover
+        img.blog-cover(src=blog.imageCover, alt=`Cover image for ${blog.title}`)
+      h1.blog-title= blog.title
+      p.blog-excerpt= blog.excerpt
+      p.blog-tags Tags: #{blog.tags.join(', ')}
+      article.blog-content
+        p= blog.content
+
+    // FOOTER
+    footer.footer
+      .footer-container
+        .footer-left
+          a.logo(href="/")
+            img.favicon(src="/img/favicon.png", alt="Logo")
+            span EXpresser
+        .footer-right
+          ul.footer-links
+            li: a(href="/about") About
+            li: a(href="/contact") Contact
+            li: a(href="/privacy") Privacy
+        .footer-bottom
+          p © #{new Date().getFullYear()} EXpresser. All rights reserved.

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const blogSchema = new mongoose.Schema(
   {
@@ -9,7 +10,6 @@ const blogSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      required: true,
       unique: true,
       lowercase: true,
     },
@@ -37,12 +37,14 @@ const blogSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-blogSchema.pre("validate", function (next) {
-  if (this.title && !this.slug) {
-    this.slug = this.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "");
+
+blogSchema.pre("save", function (next) {
+  if (this.title) {
+    this.slug = slugify(this.title, {
+      lower: true,
+      strict: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
   }
   next();
 });

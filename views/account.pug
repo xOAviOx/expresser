@@ -1,0 +1,38 @@
+extends base
+
+block content
+  .account-container
+    .account-header
+      h1 Your Account
+      .user-info
+        if user.photo
+          img.account-photo(src=`/img/${user.photo}`, alt=`Photo of ${user.name}`)
+        else
+          img.account-photo(src='/img/default.jpg', alt='Default user photo')
+        h2= user.name
+        p.email= user.email
+
+    .account-content
+      .account-nav
+        h3 Settings
+        ul
+          li: a(href='#profile') Profile
+          li: a(href='#security') Security
+          li: a(href='#notifications') Notifications
+
+      .account-details
+        form.form.form-user-data
+          h4 Profile Details
+          .form-group
+            label(for='name') Name
+            input#name.form-control(type='text', value=`${user.name}`, required)
+          .form-group
+            label(for='email') Email address
+            input#email.form-control(type='email', value=`${user.email}`, required)
+          .form-group.form-photo-upload
+            img.form-user-photo(src=`/img/${user.photo}`, alt='User photo')
+            input.form-upload(type='file', accept='image/*', id='photo', name='photo')
+            label(for='photo') Choose new photo
+
+          .form-group.right
+            button.btn.btn-small.btn-green Save settings

@@ -3,21 +3,61 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Blog Platform
+    title All Blogs | EXpresser  
     link(rel="stylesheet", href="/css/styles.css")
+    link(rel="stylesheet", href="/css/alert.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
   body
-    nav
-      .logo EXpresser
-      ul
-        li: a(href="/signup") Sign Up
-        li: a(href="/login") Login
+    // NAVBAR
+    header.header
+      nav.navbar
+        .nav-left
+          a.logo(href="/")
+            img.favicon(src="/img/favicon.png", alt="Logo")
+            span EXpresser
+        .nav-right
+          ul.nav-links
+            if user
+              li.nav-user
+                a.nav__el(href='/me')
+                  img.nav__user-img(src=`/img/${user.photo}`, alt=`Photo of ${user.name}`)
+                  span= user.name.split(' ')[0]
+                button.nav__el.nav__el--logout Logout
+            else
+              li: a.nav__el(href="/login") Login
+              li: a.nav__el.nav__el--cta(href="/signup") Sign Up
 
-    .container
-      each blog in blogs
-        .blog
-          if blog.imageCover
-            img.cover(src=blog.imageCover, alt="Cover image")
-          h2= blog.title
-          p.excerpt= blog.excerpt
-          p= blog.content
-          p.tags Tags: #{blog.tags.join(', ')}
+
+
+    // CONTENT
+    block content
+      main.container
+        h1 All Blogs
+        each blog in blogs
+          .blog
+            if blog.imageCover
+              img.cover(src=blog.imageCover, alt=`Cover image for ${blog.title}`)
+            h2= blog.title 
+            p.excerpt= blog.excerpt
+            if blog.tags && blog.tags.length
+              p.tags Tags: #{blog.tags.join(', ')}
+            a.read-more(href=`/blog/${blog.slug}`) Read More →  
+             
+    // FOOTER
+    footer.footer
+      .footer-container
+        .footer-left
+          a.logo(href="/")
+            img.favicon(src="/img/favicon.png", alt="Logo")
+            span EXpresser
+        .footer-right
+          ul.footer-links
+            li: a(href="/about") About
+            li: a(href="/contact") Contact
+            li: a(href="/privacy") Privacy
+        .footer-bottom
+          p © #{new Date().getFullYear()} EXpresser. All rights reserved.
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js")
+    script(defer src="/js/bundle.js")
