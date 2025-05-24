@@ -21,7 +21,7 @@ exports.getBlogs = catchAsync(async (req, res, next) => {
 });
 
 exports.getBlog = catchAsync(async (req, res, next) => {
-  // Get the data for the requested blog
+  // get the data for the requested blog
   const blog = await Blog.findOne({ slug: req.params.slug }).populate({
     path: "author",
     select: "name",
@@ -60,8 +60,24 @@ exports.getSignupForm = (req, res) => {
   });
 };
 
-exports.getAccount = (req, res) => {
+exports.getAccount = catchAsync(async (req, res) => {
   res.status(200).render("account", {
     title: "Your account",
   });
-};
+});
+
+exports.getCreatePost = catchAsync(async (req, res, next) => {
+  try {
+    if (!req.user) {
+      return next(new AppError('Please log in to create a post', 401));
+    }
+    
+    res.status(200).render("createPost", {
+      title: "Create New Post",
+      user: req.user
+    });
+  } catch (err) {
+    console.error("Error rendering create post page:", err);
+    return next(new AppError("Error loading create post page", 500));
+  }
+});

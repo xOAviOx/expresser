@@ -38,7 +38,11 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
-blogSchema.pre("save", function (next) {
+blogSchema.pre("save", async function (next) {
+  // Create slug from title if not provided
+  if (this.isModified("title")) {
+    this.slug = slugify(this.title, { lower: true });
+  }
   if (this.title) {
     this.slug = slugify(this.title, {
       lower: true,

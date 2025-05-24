@@ -13,7 +13,13 @@ exports.getAllBlogs = catchAsync(async (req, res, next) => {
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
-  const blog = await Blog.create(req.body);
+  // Add author from the authenticated user
+  const blogData = {
+    ...req.body,
+    author: req.user._id,
+  };
+
+  const blog = await Blog.create(blogData);
 
   res.status(201).json({
     status: "success",

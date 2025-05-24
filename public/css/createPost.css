@@ -1,0 +1,274 @@
+/* ===== RESET & BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #f8fafc;
+  color: #222;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #2d76e5;
+}
+
+.logo img.favicon {
+  width: 28px;
+  height: 28px;
+  margin-right: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav__el {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 1px solid #2d76e5;
+  background-color: transparent;
+  color: #2d76e5;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.nav__el:hover {
+  background-color: #2d76e5;
+  color: #fff;
+}
+
+.nav__el--cta {
+  background-color: #2d76e5;
+  color: #fff;
+  border: none;
+}
+
+.nav__el--cta:hover {
+  background-color: #1f5fc4;
+}
+
+.nav__user-img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  border: 2px solid #2d76e5;
+  vertical-align: middle;
+}
+
+/* ===== MAIN CONTENT ===== */
+.blog-container {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.blog-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #2d76e5;
+}
+
+/* ===== FORM ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-control:focus {
+  border-color: #2d76e5;
+  outline: none;
+}
+
+/* ===== BUTTON ===== */
+.btn--primary {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #2d76e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn--primary:hover {
+  background-color: #1f5fc4;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: auto;
+  background-color: #f1f5f9;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #2d76e5;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: #1f5fc4;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #999;
+}
+/* User Image - aligned separately */
+.nav__user-img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #2d76e5;
+  margin-right: 0.5rem;
+}
+
+/* Align items in navbar cleanly */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1rem;
+}
+
+/* Name button stays styled */
+.nav__el {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 1px solid #2d76e5;
+  background-color: transparent;
+  color: #2d76e5;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.nav__el:hover {
+  background-color: #2d76e5;
+  color: #fff;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* adds space between each item */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional: if buttons look slightly misaligned with image */
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile Image */
+.nav__user-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2d76e5;
+}
+
+/* Buttons/Links */
+.nav__el {
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  border: 1px solid #2d76e5;
+  background-color: transparent;
+  color: #2d76e5;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__el:hover {
+  background-color: #2d76e5;
+  color: white;
+}
