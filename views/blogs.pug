@@ -1,7 +1,6 @@
 doctype html
 html(lang="en")
-  head
-    meta(charset="UTF-8")
+  head    meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title All Blogs | EXpresser  
     link(rel="stylesheet", href="/css/styles.css")
@@ -33,17 +32,22 @@ html(lang="en")
 
 
     // CONTENT
-    block content
-      main.container
+    block content      
+    main.container
         h1 All Blogs
         each blog in blogs
           .blog
             if blog.imageCover
-              img.cover(src=blog.imageCover, alt=`Cover image for ${blog.title}`)
+              img.cover(src=`/img/blogs/${blog.imageCover}`, alt=`Cover image for ${blog.title}`)
             h2= blog.title 
+            .blog-meta
+              if blog.author
+                .author                 
+                  span.author-name By #{blog.author.name}
+              .tags-container
+                if blog.tags && blog.tags.length
+                  p.tags Tags: #{blog.tags.join(', ')}
             p.excerpt= blog.excerpt
-            if blog.tags && blog.tags.length
-              p.tags Tags: #{blog.tags.join(', ')}
             a.read-more(href=`/blog/${blog.slug}`) Read More →  
 
     // FOOTER

@@ -28,13 +28,11 @@ const blogSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    published: {
-      type: Date,
-      default: Date.now,
-    },
   },
   {
-    timestamps: true,
+    timestamps: true, // This adds createdAt and updatedAt fields
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
 

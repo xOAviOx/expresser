@@ -1,12 +1,13 @@
 doctype html
 html(lang="en")
-  head
+  head 
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Create Post | EXpresser
     link(rel="stylesheet", href="/css/createPost.css")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
     link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+   
   body
     // NAVBAR
     header.header
@@ -30,7 +31,7 @@ html(lang="en")
 
     main.blog-container
       h1 Create a New Blog Post
-      form.form
+      form.form(enctype="multipart/form-data")
         .form-group
           label(for="title") Title
           input#title.form-control(type="text", name="title", required)
@@ -47,13 +48,17 @@ html(lang="en")
           label(for="tags") Tags (comma separated)
           input#tags.form-control(type="text", name="tags")
 
-        .form-group         
-          label(for="imageCover") Cover Image URL
-          input#imageCover.form-control(type="text", name="imageCover")
+        .form-group.image-upload         
+          label(for="imageCover") Cover Image
+          .image-upload-container
+            input#imageCover.form-control-file(type="file", name="imageCover", accept="image/*")
+            .image-preview
+              img#imagePreview(src="#", alt="Preview")
+            small.form-text.text-muted Recommended size: 1200 x 600 pixels
 
         button.btn.btn--primary(type="submit") Publish Post
 
-    script(src='/js/bundle.js')
+    // FOOTER
     footer.footer
       .footer-container
         .footer-left
@@ -67,3 +72,25 @@ html(lang="en")
             li: a(href="/privacy") Privacy
         .footer-bottom
           p © #{new Date().getFullYear()} EXpresser. All rights reserved.
+
+    script(src='/js/bundle.js')
+    
+    script.
+      const imageInput = document.getElementById('imageCover');
+      const imagePreview = document.getElementById('imagePreview');
+      const previewContainer = document.querySelector('.image-preview');
+      
+      imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            previewContainer.style.display = 'block';
+          }
+          reader.readAsDataURL(file);
+        } else {
+          imagePreview.src = '#';
+          previewContainer.style.display = 'none';
+        }
+      });

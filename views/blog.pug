@@ -27,14 +27,18 @@ html(lang="en")
             else
               li: a.nav__el(href="/login") Login
               li: a.nav__el.nav__el--cta(href="/signup") Sign Up
-
     // CONTENT
     main.blog-container
       if blog.imageCover
-        img.blog-cover(src=blog.imageCover, alt=`Cover image for ${blog.title}`)
+        img.blog-cover(src=`/img/blogs/${blog.imageCover}`, alt=`Cover image for ${blog.title}`)
       h1.blog-title= blog.title
+      .blog-meta
+        if blog.author
+          .author
+            span.author-name By #{blog.author.name}
+        .tags-container
+          p.blog-tags Tags: #{blog.tags.join(', ')}
       p.blog-excerpt= blog.excerpt
-      p.blog-tags Tags: #{blog.tags.join(', ')}
       article.blog-content
         p= blog.content
 
@@ -52,3 +56,5 @@ html(lang="en")
             li: a(href="/privacy") Privacy
         .footer-bottom
           p © #{new Date().getFullYear()} EXpresser. All rights reserved.
+
+        script(src='/js/bundle.js')

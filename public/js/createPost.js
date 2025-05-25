@@ -1,17 +1,15 @@
 import axios from "axios";
 import { showAlert } from "./alert";
 
-export const createPost = async (title, excerpt, content, tags, imageCover) => {
+export const createPost = async (formData) => {
   try {
+    console.log("Form data being sent:", Object.fromEntries(formData));
     const res = await axios({
       method: "POST",
       url: "/api/v1/blogs",
-      data: {
-        title,
-        excerpt,
-        content,
-        tags: tags ? tags.split(",").map((tag) => tag.trim()) : [],
-        imageCover,
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
     });
 
@@ -22,6 +20,7 @@ export const createPost = async (title, excerpt, content, tags, imageCover) => {
       }, 1500);
     }
   } catch (err) {
+    console.error("Error details:", err);
     showAlert(
       "error",
       err.response?.data?.message || "Error creating post. Please try again."

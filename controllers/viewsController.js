@@ -7,7 +7,7 @@ exports.getBlogs = catchAsync(async (req, res, next) => {
   const blogs = await Blog.find().populate({
     path: "author",
     select: "name",
-  });
+  }).sort({ createdAt: -1 });
 
   if (!blogs) {
     return next(new AppError("No blogs found", 404));
@@ -69,12 +69,12 @@ exports.getAccount = catchAsync(async (req, res) => {
 exports.getCreatePost = catchAsync(async (req, res, next) => {
   try {
     if (!req.user) {
-      return next(new AppError('Please log in to create a post', 401));
+      return next(new AppError("Please log in to create a post", 401));
     }
-    
+
     res.status(200).render("createPost", {
       title: "Create New Post",
-      user: req.user
+      user: req.user,
     });
   } catch (err) {
     console.error("Error rendering create post page:", err);

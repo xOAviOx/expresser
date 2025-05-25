@@ -8,8 +8,10 @@ router
   .get(blogController.getAllBlogs)
   .post(
     authController.protect,
+    blogController.uploadBlogImage,
+    blogController.resizeBlogImage,
     (req, res, next) => {
-      // Add user from protect middleware
+      // Add user from protect middleware after file upload
       req.body.author = req.user.id;
       next();
     },
@@ -18,4 +20,5 @@ router
 
 router.route("/deleteAll").delete(blogController.deleteAllBlog);
 router.route("/deleteBlog/:id").delete(blogController.deleteBlog);
+
 module.exports = router;

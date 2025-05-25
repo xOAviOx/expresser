@@ -34,14 +34,30 @@ if (signUpForm) {
 }
 
 if (createPostForm) {
-  createPostForm.addEventListener("submit", (e) => {
+  createPostForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const title = document.getElementById("title").value;
-    const excerpt = document.getElementById("excerpt").value;
-    const content = document.getElementById("content").value;
-    const tags = document.getElementById("tags").value;
-    const imageCover = document.getElementById("imageCover").value;
-    createPost(title, excerpt, content, tags, imageCover);
+
+    const formData = new FormData();
+    formData.append("title", document.getElementById("title").value);
+    formData.append("excerpt", document.getElementById("excerpt").value);
+    formData.append("content", document.getElementById("content").value);
+    formData.append("tags", document.getElementById("tags").value);
+    const imageCover = document.getElementById("imageCover").files[0];
+    if (imageCover) {
+      formData.append("imageCover", imageCover);
+    }
+
+    // Validation
+    if (!formData.get("title")) {
+      alert("Please enter a title");
+      return;
+    }
+    if (!formData.get("content")) {
+      alert("Please add some content to your post");
+      return;
+    }
+
+    createPost(formData);
   });
 }
 
