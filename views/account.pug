@@ -1,38 +1,70 @@
-extends base
+doctype html
+html(lang="en")
+  head  
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Your Profile | EXpresser
+    link(rel="stylesheet", href="/css/styles.css")
+    link(rel="stylesheet", href="/css/profile.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    link(rel="shortcut icon", href="/img/icon.png", type="image/png")
+  body
+    // NAVBAR
+    header.header
+      nav.navbar
+        .nav-left
+          a.logo(href="/")
+            img.favicon(src="/img/icon.png", alt="Logo")
+            span EXpresser
+        .nav-right
+          ul.nav-links
+            if user
+              li.nav-user
+                a.nav__el(href='/me')
+                  img.nav__user-img(src=`/img/users/${user.photo}`, alt=`Photo of ${user.name}`)
+                  span= user.name.split(' ')[0]
+                button.nav__el.nav__el--logout Logout
+                a.nav__el.nav__el--post(href='/create-post') Create Post
+            else
+              li: a.nav__el(href="/login") Login
+              li: a.nav__el.nav__el--cta(href="/signup") Sign Up
 
-block content
-  .account-container
-    .account-header
-      h1 Your Account
-      .user-info
-        if user.photo
-          img.account-photo(src=`/img/${user.photo}`, alt=`Photo of ${user.name}`)
-        else
-          img.account-photo(src='/img/default.jpg', alt='Default user photo')
-        h2= user.name
-        p.email= user.email
+    // MAIN CONTENT
+    main.container.profile
+      h1 Your Profile  
+      form.form.form-user-data
+        .form-group
+          label(for="name") Name
+          input#name.form-control(type="text", required, value=user.name)
 
-    .account-content
-      .account-nav
-        h3 Settings
-        ul
-          li: a(href='#profile') Profile
-          li: a(href='#security') Security
-          li: a(href='#notifications') Notifications
+        .form-group
+          label(for="email") Email
+          input#email.form-control(type="email", required, value=user.email)
 
-      .account-details
-        form.form.form-user-data
-          h4 Profile Details
-          .form-group
-            label(for='name') Name
-            input#name.form-control(type='text', value=`${user.name}`, required)
-          .form-group
-            label(for='email') Email address
-            input#email.form-control(type='email', value=`${user.email}`, required)
-          .form-group.form-photo-upload
-            img.form-user-photo(src=`/img/${user.photo}`, alt='User photo')
-            input.form-upload(type='file', accept='image/*', id='photo', name='photo')
-            label(for='photo') Choose new photo
+        .form-group.form-photo-upload
+          label(for="photo") Profile Photo
+          input#photo.form-upload(type="file", name="photo", accept="image/*")
 
-          .form-group.right
-            button.btn.btn-small.btn-green Save settings
+          if user.photo
+            img.profile-img(src=`/img/users/${user.photo}`, alt="User photo")
+
+        button.btn(type="submit") Update
+
+      a.btn.btn--secondary(href="/my-blogs") My Blogs →
+
+    // FOOTER
+    footer.footer
+      .footer-container
+        .footer-left
+          a.logo(href="/")
+            img.favicon(src="/img/favicon.png", alt="Logo")
+            span EXpresser
+        .footer-right
+          ul.footer-links
+            li: a(href="/") About
+            li: a(href="/") Contact
+            li: a(href="/") Privacy
+        .footer-bottom
+          p © #{new Date().getFullYear()} EXpresser. All rights reserved.
+    script(src='/js/bundle.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js")

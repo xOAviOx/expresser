@@ -67,7 +67,7 @@ exports.createBlog = catchAsync(async (req, res, next) => {
     "author",
     "name photo"
   );
-  console.log("Final imageCover being saved to DB:", req.body.imageCover);
+  // console.log("Final imageCover being saved to DB:", req.body.imageCover);
 
   res.status(201).json({
     status: "success",

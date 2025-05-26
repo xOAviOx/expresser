@@ -6,7 +6,7 @@ html(lang="en")
     title Create Post | EXpresser
     link(rel="stylesheet", href="/css/createPost.css")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
-    link(rel="shortcut icon", href="/img/favicon.png", type="image/png")
+    link(rel="shortcut icon", href="/img/icon.png", type="image/png")
    
   body
     // NAVBAR
@@ -14,14 +14,14 @@ html(lang="en")
       nav.navbar
         .nav-left
           a.logo(href="/")
-            img.favicon(src="/img/favicon.png", alt="Logo")
+            img.favicon(src="/img/icon.png", alt="Logo")
             span EXpresser
         .nav-right
           ul.nav-links
             if user
               li.nav-user
                 a.nav__el(href='/me')
-                  img.nav__user-img(src=`/img/${user.photo}`, alt=`Photo of ${user.name}`)
+                  img.nav__user-img(src=`/img/users/${user.photo}`, alt=`Photo of ${user.name}`)
                   span= user.name.split(' ')[0]
                 button.nav__el.nav__el--logout Logout
                 a.nav__el.nav__el--post(href='/create-post') Create Post

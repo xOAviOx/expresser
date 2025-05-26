@@ -10,5 +10,11 @@ router.get("/logout", authController.logout);
 //all the protected routes after this
 
 router.route("/").get(authController.protect, userController.getAllUsers);
-
+router.patch(
+  "/update-me",
+  authController.protect,
+  userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
+  userController.updateMe
+);
 module.exports = router;

@@ -5,14 +5,32 @@ import { login } from "./login";
 import { logout } from "./login";
 import { signUp } from "./signup";
 import { createPost } from "./createPost";
+import { updateUser } from "./updateUser";
+import { updatUser } from "./updateUser";
 
 // DOM ELEMENTS
 const loginForm = document.querySelector(".login-form");
 const logOutBtn = document.querySelector(".nav__el--logout");
 const signUpForm = document.querySelector(".signup-form");
 const createPostForm = document.querySelector(".form");
+const userUpdateForm = document.querySelector(".form-user");
+const userDataForm = document.querySelector(".form-user-data");
 
 // DELEGATION
+if (userDataForm) {
+  userDataForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value);
+    form.append("email", document.getElementById("email").value);
+
+    const photoFile = document.getElementById("photo").files[0];
+    if (photoFile) form.append("photo", photoFile);
+
+    await updateUser(form);
+  });
+}
+
 if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -47,7 +65,6 @@ if (createPostForm) {
       formData.append("imageCover", imageCover);
     }
 
-    // Validation
     if (!formData.get("title")) {
       alert("Please enter a title");
       return;
@@ -58,6 +75,21 @@ if (createPostForm) {
     }
 
     createPost(formData);
+  });
+}
+
+if (userUpdateForm) {
+  userUpdateForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userForm = new FormData();
+    userForm.append("name", document.getElementById("name").value);
+    userForm.append("email", document.getElementById("email").value);
+    const photo = document.getElementById("photo").files[0];
+    if (photo) {
+      formData.append("photo", photo);
+    }
+
+    updatUser(userForm);
   });
 }
 

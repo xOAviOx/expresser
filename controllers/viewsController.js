@@ -4,10 +4,12 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.getBlogs = catchAsync(async (req, res, next) => {
   // Get blogs data from collection with author info
-  const blogs = await Blog.find().populate({
-    path: "author",
-    select: "name",
-  }).sort({ createdAt: -1 });
+  const blogs = await Blog.find()
+    .populate({
+      path: "author",
+      select: "name",
+    })
+    .sort({ createdAt: -1 });
 
   if (!blogs) {
     return next(new AppError("No blogs found", 404));
