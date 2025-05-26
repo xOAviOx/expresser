@@ -1,0 +1,98 @@
+/* My Blogs Page */
+.blog {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.blog:hover {
+  transform: translateY(-4px);
+}
+
+.blog h2 {
+  margin-top: 0.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.blog .cover {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  max-height: 280px;
+}
+
+.blog-meta {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.tags {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.excerpt {
+  margin: 1rem 0;
+  color: #444;
+}
+
+.blog-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.read-more {
+  font-weight: 600;
+  text-decoration: none;
+  color: #1e88e5;
+  padding: 0.5rem 0;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* Navigation Elements */
+.nav__el--logout,
+.nav__el--post {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #2d76e5;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.nav__el--logout:hover,
+.nav__el--post:hover {
+  background-color: #1e5bb0;
+}
+
+/* User Navigation */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav__user-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2d76e5;
+}

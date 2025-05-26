@@ -2,7 +2,7 @@ const express = require("express");
 
 const viewController = require("./../controllers/viewsController");
 const authController = require("./../controllers/authController");
-
+const blogController = require("./../controllers/blogController");
 const router = express.Router();
 
 // Use isLoggedIn middleware for all routes
@@ -19,5 +19,12 @@ router.get(
   viewController.getCreatePost
 );
 router.get("/me", authController.protect, viewController.getAccount);
+router.get(
+  "/my-blogs",
+  authController.isLoggedIn,
+  authController.protect,
+  viewController.getMyBlogs
+);
+router.delete("/blog/:id", authController.protect, blogController.deleteBlog);
 
 module.exports = router;

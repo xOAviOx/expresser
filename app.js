@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const methodOverride = require("method-override");
 const blogRouter = require("./routes/blogRoutes");
 const viewRouter = require("./routes/viewRoutes");
 const userRouter = require("./routes/userRoutes");
@@ -14,7 +15,8 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser()); // Add this line to parse cookies
+app.use(cookieParser());
+app.use(methodOverride("_method")); // Add method-override middleware
 
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));

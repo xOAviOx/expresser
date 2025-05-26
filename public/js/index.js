@@ -93,4 +93,9 @@ if (userUpdateForm) {
   });
 }
 
-if (logOutBtn) logOutBtn.addEventListener("click", logout);
+if (logOutBtn) {
+  logOutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    logout();
+  });
+}

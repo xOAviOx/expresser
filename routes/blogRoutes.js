@@ -20,5 +20,5 @@ router
 
 router.route("/deleteAll").delete(blogController.deleteAllBlog);
 router.route("/deleteBlog/:id").delete(blogController.deleteBlog);
-
+router.route("/myBlogs").get(authController.protect, blogController.getMyBlogs);
 module.exports = router;

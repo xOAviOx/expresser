@@ -54,10 +54,13 @@ exports.getAllBlogs = catchAsync(async (req, res, next) => {
 });
 
 exports.createBlog = catchAsync(async (req, res, next) => {
-  // add author from the authenticated user
+  if (!req.body.author) {
+    req.body.author = req.user.id;
+  }
+
   const blogData = {
     ...req.body,
-    author: req.user._id,
+    author: req.user.id,
   };
 
   const blog = await Blog.create(blogData);
@@ -77,11 +80,36 @@ exports.createBlog = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteBlog = catchAsync(async (req, res, next) => {
-  const blog = await Blog.findByIdAndDelete(req.params.id);
+exports.getMyBlogs = catchAsync(async (req, res, next) => {
+  const blogs = await Blog.find({ author: req.user._id })
+    .populate("author", "name photo")
+    .sort({ createdAt: -1 });
 
-  if (!blog)
+  res.status(200).json({
+    status: "success",
+    results: blogs.length,
+    data: {
+      data: blogs,
+    },
+  });
+});
+
+exports.deleteBlog = catchAsync(async (req, res, next) => {
+  const blog = await Blog.findById(req.params.id);
+
+  if (!blog) {
     return res.status(404).json({ status: "fail", message: "Blog Not Found" });
+  }
+
+  // Check if the user is the owner of the blog
+  if (blog.author.toString() !== req.user._id.toString()) {
+    return res.status(403).json({
+      status: "fail",
+      message: "You are not authorized to delete this blog",
+    });
+  }
+
+  await Blog.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     status: "success",

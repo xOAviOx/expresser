@@ -2,10 +2,11 @@ doctype html
 html(lang="en")
   head  
     meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")   
     title Your Profile | EXpresser
     link(rel="stylesheet", href="/css/styles.css")
     link(rel="stylesheet", href="/css/profile.css")
+    link(rel="stylesheet", href="/css/alert.css")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
     link(rel="shortcut icon", href="/img/icon.png", type="image/png")
   body
@@ -31,15 +32,15 @@ html(lang="en")
 
     // MAIN CONTENT
     main.container.profile
-      h1 Your Profile  
+      h1 Your Profile   
       form.form.form-user-data
         .form-group
           label(for="name") Name
-          input#name.form-control(type="text", required, value=user.name)
+          input#name(type="text", required, value=user.name)
 
         .form-group
           label(for="email") Email
-          input#email.form-control(type="email", required, value=user.email)
+          input#email(type="email", required, value=user.email)
 
         .form-group.form-photo-upload
           label(for="photo") Profile Photo
@@ -57,14 +58,14 @@ html(lang="en")
       .footer-container
         .footer-left
           a.logo(href="/")
-            img.favicon(src="/img/favicon.png", alt="Logo")
+            img.favicon(src="/img/icon.png", alt="Logo")
             span EXpresser
         .footer-right
           ul.footer-links
             li: a(href="/") About
             li: a(href="/") Contact
-            li: a(href="/") Privacy
-        .footer-bottom
+            li: a(href="/") Privacy        .footer-bottom
           p © #{new Date().getFullYear()} EXpresser. All rights reserved.
-    script(src='/js/bundle.js')
+    
     script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js")
+    script(defer src='/js/bundle.js')

@@ -67,6 +67,17 @@ exports.getAccount = catchAsync(async (req, res) => {
     title: "Your account",
   });
 });
+exports.getMyBlogs = catchAsync(async (req, res, next) => {
+  // Get blogs data from collection with author info
+  const blogs = await Blog.find({ author: req.user._id })
+    .populate("author", "name photo")
+    .sort({ createdAt: -1 });
+
+  res.status(200).render("myBlogs", {
+    title: "My Blogs",
+    blogs,
+  });
+});
 
 exports.getCreatePost = catchAsync(async (req, res, next) => {
   try {
