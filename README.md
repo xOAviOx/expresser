@@ -11,9 +11,7 @@ A blogging platform built with Node.js, Express, MongoDB, and Pug.
 
 ## Demo Video
 
-[Watch the demo](public/vid/demo.mp4)
-
-> Replace `VIDEO_ID_HERE` with your actual YouTube video ID or link.
+[![Watch the demo](https://img.youtube.com/vi/jTt-tBEpifY/0.jpg)](https://www.youtube.com/watch?v=jTt-tBEpifY)
 
 ## Getting Started
 
